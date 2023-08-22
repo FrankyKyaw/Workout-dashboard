@@ -3,3 +3,10 @@
 @tailwind utilities;
 
 
+.fill-muscle {
+    @apply fill-red-900;
+  }
+
+.clicked-muscle {
+    @apply fill-green-900;
+}

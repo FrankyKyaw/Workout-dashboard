@@ -5,6 +5,9 @@ const page = () => {
   return (
     <div>
         <MusclePic/>
+        <div className="mt-10">
+        <button className={`w-fit right-5 top-2 p-2 rounded-md hover:scale-110 active:scale-100 duration-200 text-black bg-slate-200 dark:bg-[#212933]`}  >Continue</button>
+      </div>
     </div>
   )
 }
