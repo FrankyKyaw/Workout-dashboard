@@ -2,15 +2,18 @@
 
 import React, { useEffect, useState } from "react";
 
+interface MusclePicProps {
+  onMuscleSelectionChanged: (selectedMuscle: string[]) => void;
+}
 
-const MusclePic = () => {
+const MusclePic: React.FC<MusclePicProps> = ({ onMuscleSelectionChanged }) => {
 
   const muscleNames = ["traps", "lowerback", "obliques", "hamstrings", "glutes", "calves", "triceps", "forearms", "shoulders", "chest", "abdominal", "biceps", "quads", ]
   const [selectedMuscles, setSelectedMuscles] = useState<string[]>([]);
+  
+
   useEffect(() => {
     const parentElement = document.getElementById("muscle-pic");
-
-    
 
     if (parentElement) {
       const handleHover = (event: MouseEvent) => {
@@ -30,20 +33,23 @@ const MusclePic = () => {
         const muscleName = targetElement.getAttribute('data-muscle');
 
         if (muscleName && muscleNames.includes(muscleName)) {
+          let newSelectedMuscles: string[] = [];
+
           const elements = parentElement.querySelectorAll(`[data-muscle='${muscleName}']`);
 
           if (selectedMuscles.includes(muscleName)) {
             elements.forEach((element) => {
               element.classList.remove('clicked-muscle');
             });
-            setSelectedMuscles(selectedMuscles.filter(name => name !== muscleName));
+            newSelectedMuscles = selectedMuscles.filter(name => name !== muscleName);
           } else {
             elements.forEach((element) => {
               element.classList.add('clicked-muscle');
             });
-            setSelectedMuscles([...selectedMuscles, muscleName]);
+            newSelectedMuscles = [...selectedMuscles, muscleName];
           }
-          
+          setSelectedMuscles(newSelectedMuscles);
+          onMuscleSelectionChanged(newSelectedMuscles);
         }
       };
       if (parentElement) {
