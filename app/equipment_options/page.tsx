@@ -7,10 +7,10 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 const Equipment_Options = () => {
   const equipments = [
-    { name: "Dumbbell", image: "/Dumbbell.png" },
+    { name: "Dumbbells", image: "/Dumbbell.png" },
     { name: "Band", image: "/Band.png" },
-    { name: "Yoga mat", image: "/yoga_mat.png" },
-    { name: "KettleBell", image: "/Kettlebell.png" },
+    { name: "Yoga", image: "/yoga_mat.png" },
+    { name: "No Equipments", image: "/Kettlebell.png" },
   ];
   const searchParams = useSearchParams()!;
   const pathName = usePathname();
