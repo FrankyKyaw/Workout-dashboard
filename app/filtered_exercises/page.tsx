@@ -4,6 +4,7 @@ import { GetServerSideProps } from "next";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PostgrestError } from "@supabase/supabase-js";
+import { ExerciseCard } from "../component/ExerciseCard";
 
 interface Exercise {
   index: number;
@@ -66,21 +67,23 @@ export default function FilteredExercises() {
   }, []);
 
   return (
-    <div>
+    <div className="mt-4 flex flex-col items-center">
       {/* <pre>
-        {JSON.stringify(data, null, 2)}
+         {JSON.stringify(data, null, 2)}
       </pre> */}
-      <div>
+      <div className="flex flex-col max-w-lg w-1/2 p-6 bg-white border border-gray-200 rounded-lg shadow ">
         {data
           ? data.map((exercise, index) => (
-              <div key={index}>
-                {exercise.exercise_name}
-                {exercise.muscle_name}
-                {exercise.equipment}
-              </div>
+            <ExerciseCard
+            index={index}
+            exercise_name={exercise.exercise_name}
+            video_link={exercise.video_link}
+            />
             ))
           : "No exercises found."}
       </div>
+      <button className={`mt-6 w-fit right-5 top-2 p-2 rounded-md hover:scale-110 active:scale-100 duration-200 text-black bg-slate-200 dark:bg-[#212933]`}  
+        >Start Workout</button>
     </div>
   );
 }

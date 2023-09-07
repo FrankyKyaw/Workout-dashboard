@@ -32,7 +32,7 @@ const Muscle_Options = () => {
     router.push('/filtered_exercises?' + newQueryString);
   }
   return (
-    <div>
+    <div className='flex flex-col items-center pt-7'>
         <MusclePic onMuscleSelectionChanged={handleMuscleSelectionChanged}/>
         <div className="mt-10">
         <button className={`w-fit right-5 top-2 p-2 rounded-md hover:scale-110 active:scale-100 duration-200 text-black bg-slate-200 dark:bg-[#212933]`}  
