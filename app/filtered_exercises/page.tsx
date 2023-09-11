@@ -50,7 +50,7 @@ export default function FilteredExercises() {
       console.log(equipments);
 
       const { data, error } = await supabase
-        .from("Exercises")
+        .from("Workout Exercises")
         .select("*")
         .in("muscle_name", muscles)
         .in("equipment", equipments)
@@ -65,13 +65,12 @@ export default function FilteredExercises() {
     };
     fetchData();
   }, []);
-
   return (
     <div className="mt-4 flex flex-col items-center">
       {/* <pre>
          {JSON.stringify(data, null, 2)}
       </pre> */}
-      <div className="flex flex-col max-w-lg w-1/2 p-6 bg-white border border-gray-200 rounded-lg shadow ">
+      <div className="flex flex-col max-w-lg w-1/2 p-6 bg-white border max-h-[500px] overflow-y-auto border-gray-200 rounded-lg shadow ">
         {data
           ? data.map((exercise, index) => (
             <ExerciseCard
