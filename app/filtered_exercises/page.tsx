@@ -20,18 +20,29 @@ type FilteredExercisesProps = {
 };
 
 export default function FilteredExercises() {
-  const router = useRouter();
   const searchParams = useSearchParams()!;
 
   const [data, setData] = useState<any[] | null>(null);
   const [error, setError] = useState<Error | PostgrestError | null>(null);
 
-  const validEquipments = ["Dumbbells", "Stretches"];
-  const validMuscles = ["Biceps", "Long Head Bicep"];
+  const [addedExercises, setAddedExercises] = useState<Set<number>>(new Set());
 
   let muscles: string[] = [];
   let equipments: string[] = [];
 
+  const toggleAddOrRemove = (index: number, action: string) => {
+    const newAddedExercises = new Set(addedExercises);
+    if (action == "add") {
+      newAddedExercises.add(index);
+    } else {
+      newAddedExercises.delete(index);
+    }
+    setAddedExercises(newAddedExercises);
+  };
+
+  const handleStart = () => {
+    console.log(addedExercises);
+  };
   useEffect(() => {
     const fetchData = async () => {
       searchParams.forEach((value, key) => {
@@ -53,7 +64,7 @@ export default function FilteredExercises() {
         .from("Workout Exercises")
         .select("*")
         .in("muscle_name", muscles)
-        .in("equipment", equipments)
+        .in("equipment", equipments);
 
       if (error) {
         console.error("Error fetching data:", error);
@@ -67,22 +78,25 @@ export default function FilteredExercises() {
   }, []);
   return (
     <div className="mt-4 flex flex-col items-center">
-      {/* <pre>
-         {JSON.stringify(data, null, 2)}
-      </pre> */}
-      <div className="flex flex-col max-w-lg w-1/2 p-6 bg-white border max-h-[500px] overflow-y-auto border-gray-200 rounded-lg shadow ">
+      <div className="flex flex-col w-2/3 p-6 bg-white border max-h-[500px] overflow-y-auto border-gray-200 rounded-lg shadow ">
         {data
-          ? data.map((exercise, index) => (
-            <ExerciseCard
-            index={index}
-            exercise_name={exercise.exercise_name}
-            video_link={exercise.video_link}
-            />
+          ? data.map((exercise) => (
+              <ExerciseCard
+                index={exercise.index}
+                exercise_name={exercise.exercise_name}
+                video_link={exercise.video_link}
+                toggleAddOrRemove={toggleAddOrRemove}
+                is_added={addedExercises.has(exercise.index)}
+              />
             ))
           : "No exercises found."}
       </div>
-      <button className={`mt-6 w-fit right-5 top-2 p-2 rounded-md hover:scale-110 active:scale-100 duration-200 text-black bg-slate-200 dark:bg-[#212933]`}  
-        >Start Workout</button>
+      <button
+        className={`mt-6 w-fit right-5 top-2 p-2 rounded-md hover:scale-110 active:scale-100 duration-200 text-black bg-slate-200 dark:bg-[#212933]`}
+        onClick={handleStart}
+      >
+        Start Workout
+      </button>
     </div>
   );
 }
