@@ -20,7 +20,6 @@ export const Navbar = () => {
               >
                 Sign Up
               </Link>
-              <SignOutButton/>
             </div>
           </div>
         </Container>
