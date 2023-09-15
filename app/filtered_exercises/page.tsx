@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PostgrestError } from "@supabase/supabase-js";
 import { ExerciseCard } from "../component/ExerciseCard";
+import Image from "next/image";
 
 interface Exercise {
   index: number;
@@ -165,7 +166,7 @@ export default function FilteredExercises() {
       <div className="flex flex-col p-3 w-full h-full items-center rounded-lg ">
           <h2 className="text-2xl font-bold">Workout completed! 🎉</h2>
           <p className="mt-3 italic">The pain you feel today is the strength you feel tomorrow.</p>
-          <img className="mt-4 mb-8 w-1/2 h-1/2 " src={"/congrats.svg"}></img>
+          <Image className="mt-4 mb-8" src="/congrats.svg" alt="Description" width={800} height={400}/>
       </div>
       ) : (
         renderCheckList()
