@@ -24,7 +24,7 @@ export const ExerciseCard: React.FC<ExerciseCardProps> = ({
         rel="noopener noreferrer"
         href={video_link}
       >
-        Click here
+        Watch video
       </a>
       <button className="hover:scale-105 w-fit bg-slate-100 p-2 rounded-md hover:bg-slate-200"
       onClick={() => toggleAddOrRemove(index, is_added ? 'remove' : 'add')}>

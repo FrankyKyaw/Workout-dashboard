@@ -8,7 +8,7 @@ export const Navbar = () => {
       <div className="py-4 border-b-[1px]">
         <Container>
           <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
-            <Link href="/dashboard">Workout</Link>
+            <Link href="/">Workout</Link>
             <div className="flex flex-row gap-6">
               <Link href="/register"
                 className={`w-fit right-5 top-2 p-2 rounded-md hover:scale-110 active:scale-100 duration-200 text-black bg-slate-200 dark:bg-[#212933]`}

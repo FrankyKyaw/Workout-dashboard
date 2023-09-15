@@ -9,8 +9,8 @@ const Equipment_Options = () => {
   const equipments = [
     { name: "Dumbbells", image: "/Dumbbell.png" },
     { name: "Band", image: "/Band.png" },
-    { name: "Yoga", image: "/yoga_mat.png" },
-    { name: "No Equipments", image: "/Kettlebell.png" },
+    { name: "Yoga Mat", image: "/yoga_mat.png" },
+    { name: "No Equipments", image: "/No_equipment.png" },
   ];
   const searchParams = useSearchParams()!;
   const pathName = usePathname();
@@ -59,7 +59,7 @@ const Equipment_Options = () => {
         {equipments.slice(0, 4).map((equipment, index) => (
           <div
             key={index}
-            className={`flex items-center justify-center ${
+            className={`relative flex items-center justify-center ${
               selectedEquipments.includes(equipment.name)
                 ? "bg-gray-200"
                 : "hover:bg-gray-100"

@@ -7,7 +7,7 @@ interface EquipmentCardProps {
 
 const EquipmentCard:React.FC<EquipmentCardProps> = ({name, image}) => {
   return (
-    <div className="flex flex-col items-center w-full h-full max-w-[100px] max-h-[100px]">
+    <div className=" absolute inset-y-1 flex flex-col items-center w-full h-full max-w-[100px] max-h-[100px]">
         <img className="w-full h-auto " src={image} alt={name}></img>
         <h3 className="w-full text-center">{name}</h3>
     </div>
