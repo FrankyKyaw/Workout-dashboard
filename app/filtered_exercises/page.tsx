@@ -31,8 +31,8 @@ export default function FilteredExercises() {
 
   const [addedExercises, setAddedExercises] = useState<Set<number>>(new Set());
 
-  let muscles: string[] = [];
-  let equipments: string[] = [];
+  
+  
 
   const [showCheckList, setShowCheckList] = useState(false);
   const [allChecked, setAllChecked] = useState(false);
@@ -102,6 +102,8 @@ export default function FilteredExercises() {
   };
 
   useEffect(() => {
+    let muscles: string[] = [];
+    let equipments: string[] = [];
     const fetchData = async () => {
       searchParams.forEach((value, key) => {
         if (key === "muscle_name") {
@@ -145,6 +147,7 @@ export default function FilteredExercises() {
           ) : data
             ? data.map((exercise) => (
                 <ExerciseCard
+                  key={exercise.index}
                   index={exercise.index}
                   exercise_name={exercise.exercise_name}
                   video_link={exercise.video_link}

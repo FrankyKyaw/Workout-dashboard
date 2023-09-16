@@ -65,7 +65,7 @@ const MusclePic: React.FC<MusclePicProps> = ({ onMuscleSelectionChanged }) => {
         parentElement.addEventListener('click', handleClick);
       };
     }
-  }, [muscleNames, onMuscleSelectionChanged, selectedMuscles]);
+  }, [onMuscleSelectionChanged, selectedMuscles]);
   
   return (
     <svg
